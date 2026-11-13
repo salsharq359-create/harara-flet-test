@@ -1,0 +1,25 @@
+[project]
+name = "harara-test"
+version = "0.1.0"
+description = "اختبار قراءة حرارة الجوال بـ Flet"
+requires-python = ">=3.10"
+dependencies = [
+    "flet>=1.1.2",
+]
+
+[tool.flet]
+org = "com.harara"
+product = "Harara Test"
+company = "Harara"
+copyright = "Harara"
+icon_background = "#0B0E1F"
+
+# مكتبات الوصول لنظام الجوال، كل وحدة لمنصتها فقط
+[tool.flet.android]
+dependencies = ["pyjnius"]
+
+[tool.flet.ios]
+dependencies = ["pyobjus"]
+
+[tool.flet.app]
+path = "src"
