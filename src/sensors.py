@@ -85,8 +85,11 @@ def read_ios() -> dict:
     from pyobjus import autoclass
     from pyobjus.dylib_manager import INCLUDE, load_framework
 
-    load_framework(INCLUDE.Foundation)
-    load_framework(INCLUDE.UIKit)
+    # UIKit محمّل أصلًا داخل التطبيق، و INCLUDE ما فيه UIKit (طلع خطأ بالاختبار).
+    try:
+        load_framework(INCLUDE.Foundation)
+    except Exception:  # noqa: BLE001
+        pass
     info = autoclass("NSProcessInfo").processInfo()
     device = autoclass("UIDevice").currentDevice()
     device.setBatteryMonitoringEnabled_(True)
